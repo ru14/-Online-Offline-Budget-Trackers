@@ -25,11 +25,11 @@ To start the server, run `npm start`. To access the app after starting the serve
 
 ## Example Usage
 
-* Deployed App: 
+* Deployed App: https://gentle-sea-32247.herokuapp.com
 An example screenshot of the application is below.
 
 ![screenshot](Assets/screenshot.jpg)
-* the URL to the Github repository
+* the URL to the Github repository: https://github.com/ru14/Online-Offline-Budget-Trackers
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
