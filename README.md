@@ -24,7 +24,7 @@ To install the required dependencies, run `npm install`
 To start the server, run `npm start`. To access the app after starting the server, go to http://localhost:3000 in your browser.
 
 ## Example Usage
-
+Visit the site on <a href="https://pacific-tor-20392.herokuapp.com/">Heroku</a>
 * Deployed App: https://gentle-sea-32247.herokuapp.com
 An example screenshot of the application is below.
 
