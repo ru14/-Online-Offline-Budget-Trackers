@@ -41,6 +41,11 @@ request.onsuccess = () => {
         console.log(getRequestIdx.result);
     };
 };
+function saveRecord(record) {
+  const transaction = db.transaction("pending", "readwrite");
+  const store = transaction.objectStore("pending");
+  store.add(record);
+}
 // called when user goes online to send transactions stored in db to server
 function checkDatabase() {
     const transaction = db.transaction("pending", "readonly");
