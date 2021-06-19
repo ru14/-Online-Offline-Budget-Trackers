@@ -9,46 +9,25 @@ const indexedDB =
 const request = window.indexedDB.open("budget", 1);
 let db;
 // Create schema
-request.onupgradeneeded = event => {
-    const db = event.target.result;
+const request = indexedDB.open("budget", 1);
 
-    // Creates an object store with a id keypath with autoincrement that can be used to query on.
-    const budgetStore = db.createObjectStore("pending", {
-        keyPath: "id",
-        autoIncrement: true
-    });
-    // Creates a statusIndex that we can query on.
-    
-      
-}
+request.onupgradeneeded = (event) => {
+  event.target.result.createObjectStore("pending", {
+    keyPath: "id",
+    autoIncrement: true
+  });
+};
 
-// Opens a transaction, accesses the budget objectStore and statusIndex.
-request.onsuccess = () => {
-    const db = request.result;
-    const transaction = db.transaction(["budget"], "readwrite");
-    const budgetStore = transaction.objectStore("pending");
-    const statusIndex = budgetStore.index("statusIndex");
+request.onerror = (err) => {
+  console.log(err.message);
+};
 
-    // Adds data to our objectStore
-    budgetStore.add({ id: "1", status: "complete" });
-    // budgetStore.add({ id: "2", status: "in-progress" });
-    // budgetStore.add({ id: "3", status: "complete" });
-    // budgetStore.add({ id: "4", status: "backlog" });
+request.onsuccess = (event) => {
+  db = event.target.result;
 
-    // Return an item by keyPath
-    const getRequest = budgetStore.get("1");
-    getRequest.onsuccess = () => {
-        console.log(getRequest.result);
-    };
-
-    // Return an item by index
-    const getRequestIdx = statusIndex.getAll("complete");
-    getRequestIdx.onsuccess = () => {
-        console.log(getRequestIdx.result);
-    };
-    budgetStore.createIndex("statusIndex", "status");
-    if (navigator.onLine) {
-        checkDatabase();}
+  if (navigator.onLine) {
+    checkDatabase();
+  }
 };
 function saveRecord(record) {
   const transaction = db.transaction("pending", "readwrite");
