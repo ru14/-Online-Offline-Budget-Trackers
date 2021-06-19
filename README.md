@@ -25,7 +25,7 @@ To start the server, run `npm start`. To access the app after starting the serve
 
 ## Example Usage
 
-* Deployed App: <a href="https://gentle-sea-32247.herokuapp.com">Heroku</a>
+* Deployed App: <a href="https://damp-anchorage-76514.herokuapp.com">Heroku</a>
 
 An example screenshot of the application is below.
 
