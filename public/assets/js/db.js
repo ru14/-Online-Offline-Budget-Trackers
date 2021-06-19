@@ -1,3 +1,11 @@
+const indexedDB =
+  window.indexedDB ||
+  window.mozIndexedDB ||
+  window.webkitIndexedDB ||
+  window.msIndexedDB ||
+  window.shimIndexedDB;
+
+
 const request = window.indexedDB.open("budget", 1);
 let db;
 // Create schema
@@ -10,10 +18,8 @@ request.onupgradeneeded = event => {
         autoIncrement: true
     });
     // Creates a statusIndex that we can query on.
-    budgetStore.createIndex("statusIndex", "status");
-    if (navigator.onLine) {
-        checkDatabase();
-      }
+    
+      
 }
 
 // Opens a transaction, accesses the budget objectStore and statusIndex.
@@ -40,6 +46,9 @@ request.onsuccess = () => {
     getRequestIdx.onsuccess = () => {
         console.log(getRequestIdx.result);
     };
+    budgetStore.createIndex("statusIndex", "status");
+    if (navigator.onLine) {
+        checkDatabase();}
 };
 function saveRecord(record) {
   const transaction = db.transaction("pending", "readwrite");
