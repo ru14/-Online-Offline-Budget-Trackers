@@ -1,5 +1,5 @@
 const request = window.indexedDB.open("budget", 1);
-
+let db;
 // Create schema
 request.onupgradeneeded = event => {
     const db = event.target.result;
@@ -48,7 +48,7 @@ function saveRecord(record) {
 }
 // called when user goes online to send transactions stored in db to server
 function checkDatabase() {
-    const transaction = db.transaction("pending", "readonly");
+    const transaction = db.transaction(["pending"], "readonly");
     const budgetStore = transaction.objectStore("pending");
     const getAll = budgetStore.getAll();
   
