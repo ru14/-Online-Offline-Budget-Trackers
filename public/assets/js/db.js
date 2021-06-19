@@ -6,7 +6,7 @@ const indexedDB =
   window.shimIndexedDB;
 
 
-const request = window.indexedDB.open("budget", 1);
+
 let db;
 // Create schema
 const request = indexedDB.open("budget", 1);
@@ -18,9 +18,7 @@ request.onupgradeneeded = (event) => {
   });
 };
 
-request.onerror = (err) => {
-  console.log(err.message);
-};
+
 
 request.onsuccess = (event) => {
   db = event.target.result;
@@ -29,6 +27,9 @@ request.onsuccess = (event) => {
     checkDatabase();
   }
 };
+
+
+
 function saveRecord(record) {
   const transaction = db.transaction("pending", "readwrite");
   const store = transaction.objectStore("pending");
